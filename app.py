@@ -11,7 +11,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def pagina_principal():
-    return render_template("principal.html")
+
+    #recuperar as mensagens
+    mensagens = Mensagem.recuperar_mensagens()
+
+    #enviar as mensagens pra o template
+    
+    return render_template("principal.html", mensagens = mensagens)
 
 
 @app.route("/post/mensagem", methods = ["POST"])

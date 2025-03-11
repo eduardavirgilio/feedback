@@ -22,6 +22,17 @@
         <textarea id="comentario" name="comentario" placeholder="digite seu comentario"></textarea>
         <button type="submit">Enviar</button>
     </form>
+
+    <h2>Comentarios:</h2>
+
+    <div class="comentario">
+        {% for mensagem in mensagens %}
+        <div class="nome">{{mensagem.usuario}}</div>
+        <div class="data">{{mensagem.data_hora}}</div>
+        <div class="texto">{{mensagem.mensagem}}</div>
+    </div>
+
+    {% endfor %}
 </main>
 </body>
 </html>
