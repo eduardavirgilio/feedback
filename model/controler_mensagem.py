@@ -55,9 +55,6 @@ class Mensagem:
         #recuperando os dados e armazenando em uma variavel
         resultado = cursor.fetchall()
         
-        #confirmo a alteração
-        conexao.commit()
-        
         #fecho a conexao com o banco
         cursor.close()
         conexao.close()
