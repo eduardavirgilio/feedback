@@ -36,4 +36,28 @@ class Mensagem:
         cursor.close()
         conexao.close()
 
+    def recuperar_mensagens():
+
+        #criando a conexao
         
+        conexao = Conexao.criar_conexao()
+
+        cursor = conexao.cursor(dictionary = True)
+        
+        sql = """select nome as usuario, 
+                comentarios as mensagem, 
+                data_hora from tbComentarios;"""
+
+        
+        #executando o comando sql
+        cursor.execute(sql)
+
+        #recuperando os dados e armazenando em uma variavel
+        resultado = cursor.fetchall()
+        
+        #confirmo a alteração
+        conexao.commit()
+        
+        #fecho a conexao com o banco
+        cursor.close()
+        conexao.close()
