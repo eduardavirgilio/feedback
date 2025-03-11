@@ -58,3 +58,6 @@ class Mensagem:
         #fecho a conexao com o banco
         cursor.close()
         conexao.close()
+
+        return resultado
+    
