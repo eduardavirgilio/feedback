@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect
 import datetime
 import mysql.connector
-from data import conexao
+from data.conexao import Conexao
 #criando a variavel e instanciando
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def post_mensagem():
     
     #criando a conexao
     
-    conexao = conexao.criar_conexao()
+    conexao = Conexao.criar_conexao()
     
     #o cursor sera responsavel por manipular o banco de dados
     cursor = conexao.cursor()
