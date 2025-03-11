@@ -25,8 +25,9 @@
 
     <h2>Comentarios:</h2>
 
+    {% for mensagem in mensagens %}
     <div class="comentario">
-        {% for mensagem in mensagens %}
+        
         <div class="nome">{{mensagem.usuario}}</div>
         <div class="data">{{mensagem.data_hora}}</div>
         <div class="texto">{{mensagem.mensagem}}</div>
