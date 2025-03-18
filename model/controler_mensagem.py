@@ -2,7 +2,7 @@ from data.conexao import Conexao
 import datetime
 
 class Mensagem:
-    def cadastrar_meensagem(usuario, mensagem):
+    def cadastrar_meensagem(usuario, mensagem, curtidas = 0):
         data_hora = datetime.datetime.today()
     
         #cadastrando as informações no banco de dados
@@ -16,15 +16,16 @@ class Mensagem:
 
         #criando o sql que sera executado
         
-        sql = """INSERT INTO tbComentarios (
+        sql = """INSERT INTO tb_comentarios (
                     nome, 
-                    comentarios,
-                    data_hora)
+                    comentario,
+                    data_hora,
+                    curtidas)
                     
                 VALUES (
-                    %s, %s, %s)"""
+                    %s, %s, %s, %s)"""
                     
-        valores = (usuario, mensagem, data_hora)
+        valores = (usuario, mensagem, data_hora, curtidas)
         
         #executando o comando sql
         cursor.execute(sql, valores)
@@ -42,11 +43,13 @@ class Mensagem:
         
         conexao = Conexao.criar_conexao()
 
-        cursor = conexao.cursor(dictionary = True)
+        cursor = conexao.cursor(dictionary = True) #o dictionary é pra recuperar dados
         
         sql = """select nome as usuario, 
-                comentarios as mensagem, 
-                data_hora from tbComentarios;"""
+                comentario as mensagem,
+                cod_comentario,
+                data_hora,
+                curtidas from tb_comentarios;"""
 
         
         #executando o comando sql
@@ -60,4 +63,25 @@ class Mensagem:
         conexao.close()
 
         return resultado
+    
+    def deletar_mensagem(codigo):
+        #criando a conexao
+        
+        conexao = Conexao.criar_conexao()
+
+        cursor = conexao.cursor()
+        
+        sql = """delete from tb_comentarios where cod_comentario = %s;
+        """
+
+        valor = (codigo,) #coloca a , pra saber que é uma tupla
+        #executando o comando sql
+        cursor.execute(sql, valor)
+
+        #comitando
+        conexao.commit()
+        
+        #fecho a conexao com o banco
+        cursor.close()
+        conexao.close()
     

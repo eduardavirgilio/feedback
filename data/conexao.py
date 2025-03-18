@@ -7,11 +7,11 @@ class Conexao:
         #criando a conexao
         
         conexao = mysql.connector.connect(
-            host="127.0.0.1",
+            host="10.110.131.22",
             port= 3306,
-            user="root",
-            password="root",
-            database = "dbComentarios"
+            user="3ds",
+            password="banana",
+            database = "db_feedback"
             )
         
         return conexao

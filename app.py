@@ -31,6 +31,17 @@ def post_mensagem():
     
     return redirect("/")
 
+@app.route("/delete/mensagem/<codigo>")
+def delete_mensagem(codigo):
+
+    Mensagem.deletar_mensagem(codigo)
+
+    return redirect("/")
+
+@app.route("/put/mensagem/adicionar/curtida/<codigo>")
+def adicionar_curtida(codigo):
+    return redirect ("/")
+
 #--------------------------------------------------------------------------------------------
 
 app.run(debug = True)
