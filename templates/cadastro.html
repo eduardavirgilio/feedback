@@ -5,22 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro</title>
+
+    <link rel="stylesheet" href="/static/css/cadastro.css">
 </head>
 <body>
     <header>CADASTRO MORTIFERO</header>
 
     <main>
-        <form>
-            <label>Usuario</label>
-            <input type="text" placeholder="cadastre seu nome de usuario">
+        <form action="/post/cadastro" method="POST">
+            <label for="login-usuario">Usuario</label>
+            <input type="text" placeholder="cadastre seu nome de usuario" name="login-usuario">
 
-            <label for="">Insira seu nome</label>
-            <input type="text" placeholder="cadas seu nome">
+            <label for="cadastro-nome">Insira seu nome</label>
+            <input type="text" placeholder="cadastre seu nome" name="cadastro-nome">
 
-            <label for="">Insira sua senha</label>
-            <input type="text" placeholder="insira sua senha">
+            <label for="cadastro-senha">Insira sua senha</label>
+            <input type="text" placeholder="insira sua senha" name="cadastro-senha">
 
-            <span>Ainda não tem uma conta? <a href="">fazer cadastro</a></span>
+            <button type="submit" onclick="alert('Cadastro realizado!')"><a href="/">Cadastrar</a></button>
+
+            <span>Voltar para a <a href="/pagina-de-login">pagina de login</a></span>
         </form>
     </main>
 </body>

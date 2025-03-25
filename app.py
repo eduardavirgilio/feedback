@@ -49,8 +49,26 @@ def tirar_curtida(codigo):
     return redirect ("/")
 
 @app.route("/pagina-de-login")
-def pagina_cadastro():
+def pagina_login():
     return render_template ("login.html")
+
+@app.route("/pagina-de-cadastro")
+def pagina_cadastro():
+    return render_template ("cadastro.html")
+
+@app.route("/post/cadastro", methods = ["POST"])
+def post_cadastro():
+    login = request.form.get("login-usuario")
+    
+    nome = request.form.get("cadastro-nome")
+
+    senha = request.form.get("cadastro-senha")
+
+    # cadastrando a mensagem usando a classe mensagem
+    Mensagem.cadastrar_usuario(login, nome, senha)
+    
+    return redirect("/")
+
 
 #--------------------------------------------------------------------------------------------
 
