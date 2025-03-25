@@ -41,11 +41,9 @@
                 <a href="/delete/mensagem/{{mensagem.cod_comentario}}" ><span class="deletar-mensagem">deletar</span></a>
 
                
-                <a href="/" class="material-symbols-outlined"> thumb_up </a> <span>{{mensagem.curtidas}}</span>
+                <a href="/put/mensagem/adicionar/curtida/{{mensagem.cod_comentario}}" class="material-symbols-outlined"> thumb_up </a> <span>{{mensagem.curtidas}}</span>
 
-                <a href="#" class="material-symbols-outlined">
-                    thumb_down
-                </a>
+                <a href="/put/mensagem/adicionar/deslike/{{mensagem.cod_comentario}}" class="material-symbols-outlined"> thumb_down </a> <span>{{mensagem.curtidas}}</span>
             </div>
 
         </div>

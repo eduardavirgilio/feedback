@@ -2,7 +2,7 @@ from data.conexao import Conexao
 import datetime
 
 class Mensagem:
-    def cadastrar_meensagem(usuario, mensagem, curtidas = 0):
+    def cadastrar_meensagem(usuario, mensagem):
         data_hora = datetime.datetime.today()
     
         #cadastrando as informações no banco de dados
@@ -19,13 +19,12 @@ class Mensagem:
         sql = """INSERT INTO tb_comentarios (
                     nome, 
                     comentario,
-                    data_hora,
-                    curtidas)
+                    data_hora)
                     
                 VALUES (
-                    %s, %s, %s, %s)"""
+                    %s, %s, %s)"""
                     
-        valores = (usuario, mensagem, data_hora, curtidas)
+        valores = (usuario, mensagem, data_hora)
         
         #executando o comando sql
         cursor.execute(sql, valores)
@@ -85,3 +84,48 @@ class Mensagem:
         cursor.close()
         conexao.close()
     
+    def curtir_mensagem(codigo):
+        #criando a conexao
+        
+        conexao = Conexao.criar_conexao()
+
+        cursor = conexao.cursor()
+        
+        sql = """UPDATE tb_comentarios 
+        SET curtidas = curtidas + 1
+        WHERE cod_comentario = %s;
+        """
+
+        valor = (codigo,) #coloca a , pra saber que é uma tupla
+        #executando o comando sql
+        cursor.execute(sql, valor)
+
+        #comitando
+        conexao.commit()
+        
+        #fecho a conexao com o banco
+        cursor.close()
+        conexao.close()
+
+    def descurtir_mensagem(codigo):
+        #criando a conexao
+        
+        conexao = Conexao.criar_conexao()
+
+        cursor = conexao.cursor()
+        
+        sql = """UPDATE tb_comentarios 
+        SET curtidas = curtidas - 1
+        WHERE cod_comentario = %s;
+        """
+
+        valor = (codigo,) #coloca a , pra saber que é uma tupla
+        #executando o comando sql
+        cursor.execute(sql, valor)
+
+        #comitando
+        conexao.commit()
+        
+        #fecho a conexao com o banco
+        cursor.close()
+        conexao.close()
