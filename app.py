@@ -48,6 +48,10 @@ def tirar_curtida(codigo):
     Mensagem.descurtir_mensagem(codigo)
     return redirect ("/")
 
+@app.route("/pagina-de-login")
+def pagina_cadastro():
+    return render_template ("login.html")
+
 #--------------------------------------------------------------------------------------------
 
 app.run(debug = True)
