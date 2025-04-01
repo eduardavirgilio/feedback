@@ -4,6 +4,7 @@ import datetime
 import mysql.connector
 from data.conexao import Conexao
 from model.controler_mensagem import Mensagem
+from model.controler_usuario import Usuario
 #criando a variavel e instanciando
 app = Flask(__name__)
 
@@ -65,7 +66,7 @@ def post_cadastro():
     senha = request.form.get("cadastro-senha")
 
     # cadastrando a mensagem usando a classe mensagem
-    Mensagem.cadastrar_usuario(login, nome, senha)
+    Usuario.cadastrar(login, senha, nome)
     
     return redirect("/")
 
