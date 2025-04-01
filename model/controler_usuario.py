@@ -38,6 +38,9 @@ class Usuario:
         conexao.close()
 
     def logar(usuario, senha):
+        #criptografando a senha
+
+        senha = sha256(senha.encode()).hexdigest()
         #cadastrando as informações no banco de dados
             
         #criando a conexao
