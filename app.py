@@ -1,5 +1,5 @@
 #importando uma parte do flask
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import datetime
 import mysql.connector
 from data.conexao import Conexao
@@ -8,17 +8,23 @@ from model.controler_usuario import Usuario
 #criando a variavel e instanciando
 app = Flask(__name__)
 
+app.secret_key = "banana123"
+
 #-------------------------------------------------------------------------------------------
 
 @app.route("/")
 def pagina_principal():
 
-    #recuperar as mensagens
-    mensagens = Mensagem.recuperar_mensagens()
+    if "usuario" in session:
+        #recuperar as mensagens
+        mensagens = Mensagem.recuperar_mensagens()
 
-    #enviar as mensagens pra o template
+        #enviar as mensagens pra o template
+        
+        return render_template("principal.html", mensagens = mensagens)
     
-    return render_template("principal.html", mensagens = mensagens)
+    else:
+        return redirect("/pagina-de-login")
 
 
 @app.route("/post/mensagem", methods = ["POST"])

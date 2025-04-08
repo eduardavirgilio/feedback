@@ -1,5 +1,6 @@
 from hashlib import sha256
 from data.conexao import Conexao
+from flask import session
 
 class Usuario:
     def cadastrar(usuario, senha, nome):
@@ -48,11 +49,11 @@ class Usuario:
         conexao = Conexao.criar_conexao()
             
         #o cursor sera responsavel por manipular o banco de dados
-        cursor = conexao.cursor()
+        cursor = conexao.cursor(dictionary=True)
 
         #criando o sql que sera executado
             
-        sql = """SELECT login, senha from tb_usuarios
+        sql = """SELECT login, nome from tb_usuarios
                 WHERE login = %s and binary senha = %s; """
                         
         valores = (usuario, senha)
@@ -66,9 +67,13 @@ class Usuario:
         cursor.close()
 
         if resultado:
+            session["usuario"] = resultado['login']
+            session["nome-usuario"] = resultado['nome']
             return True
         
         else:
             return False
+        
+
             
         
