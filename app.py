@@ -57,6 +57,20 @@ def pagina_login():
 def pagina_cadastro():
     return render_template ("cadastro.html")
 
+@app.route("/post/logar", methods = ["POST"])
+def post_logar():
+    usuario = request.form.get("usuario")
+
+    senha = request.form.get("senha")
+
+    esta_logado = Usuario.logar(usuario, senha)
+
+    if esta_logado:
+        return redirect("/")
+    
+    else:
+        return redirect("/pagina-de-login")
+    
 @app.route("/post/cadastro", methods = ["POST"])
 def post_cadastro():
     login = request.form.get("login-usuario")
@@ -68,8 +82,8 @@ def post_cadastro():
     # cadastrando a mensagem usando a classe mensagem
     Usuario.cadastrar(login, senha, nome)
     
-    return redirect("/")
-
+    return redirect("/pagina-de-login")
+        
 
 #--------------------------------------------------------------------------------------------
 

@@ -60,13 +60,15 @@ class Usuario:
         #executando o comando sql
         cursor.execute(sql, valores)
 
-        resultado = cursor.fetchone
+        resultado = cursor.fetchone()
 
-        if resultado  
-            
-        #confirmo a alteração
-        conexao.commit()
-            
-        #fecho a conexao com o banco
-        cursor.close()
         conexao.close()
+        cursor.close()
+
+        if resultado:
+            return True
+        
+        else:
+            return False
+            
+        

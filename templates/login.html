@@ -12,14 +12,14 @@
     <header>PAGINA DE LOGIN SINISTRO</header>
 
     <main>
-        <form>
+        <form action="/post/logar" method="POST">
             <label>Usuario</label>
-            <input type="text" placeholder="insira seu nome de usuario">
+            <input type="text" name="usuario" placeholder="insira seu nome de usuario">
 
             <label for="">Insira sua senha</label>
-            <input type="text" placeholder="insira sua senha">
+            <input type="text" name="senha" placeholder="insira sua senha">
 
-            <button type="button" onclick="alert('Login realizado!')"><a href="/">Fazer Login</a></button>
+            <button type="submit" onclick="alert('Login realizado!')">Fazer Login</button>
 
             <span>Ainda não tem uma conta? <a href="/pagina-de-cadastro">fazer cadastro</a></span>
         </form>
