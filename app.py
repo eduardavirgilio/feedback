@@ -75,7 +75,7 @@ def post_logar():
         return redirect("/")
     
     else:
-        return redirect("/pagina-de-login")
+        return redirect("/pagina-de-login") 
     
 @app.route("/post/cadastro", methods = ["POST"])
 def post_cadastro():
@@ -89,8 +89,16 @@ def post_cadastro():
     Usuario.cadastrar(login, senha, nome)
     
     return redirect("/pagina-de-login")
+
+@app.route("/deslogar")
+def sair_conta():
+    Usuario.logoff()
+    return redirect ("/")
         
 
 #--------------------------------------------------------------------------------------------
 
-app.run(debug = True)
+#app.run(debug = True)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080)
